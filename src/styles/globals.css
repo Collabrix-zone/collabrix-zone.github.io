@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
-
 @custom-variant dark (&:is(.dark *));
 
 :root {
@@ -315,8 +313,10 @@ html {
 }
 
 /* Ensure all content respects user's browser zoom settings */
-* {
-  max-width: 100%;
+@layer base {
+  * {
+    max-width: 100%;
+  }
 }
 
 /* Screen reader only content */

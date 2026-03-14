@@ -65,7 +65,7 @@ export function Hero({ isDark }: HeroProps) {
       className="flex-1 flex items-center justify-center px-4 sm:px-6 md:px-8 py-8 sm:py-12 md:py-16" 
       role="main"
     >
-      <div className="w-full max-w-6xl mx-auto text-center">
+      <div className="w-full max-w-3xl mx-auto text-center">
         {/* Coming Soon Badge */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -73,7 +73,7 @@ export function Hero({ isDark }: HeroProps) {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-8 flex justify-center"
         >
-          <div className={`flex flex-col sm:inline-flex sm:flex-row items-center gap-2 sm:gap-3 lg:gap-4 px-2 sm:px-4 lg:px-6 py-3 sm:py-4 rounded-2xl backdrop-blur-sm border-2 w-full max-w-[calc(100vw-2rem)] sm:max-w-fit overflow-hidden ${
+          <div className={`flex flex-col sm:inline-flex sm:flex-row items-center gap-2 sm:gap-3 lg:gap-4 px-2 sm:px-4 lg:px-6 py-3 sm:py-4 rounded-2xl backdrop-blur-sm border-2 sm:w-fit overflow-hidden ${
             isDark 
               ? 'bg-gradient-to-r from-sky-400/20 via-sky-300/15 to-orange-400/20 border-sky-400/30 shadow-2xl shadow-sky-400/10' 
               : 'bg-gradient-to-r from-sky-600/10 via-sky-500/8 to-orange-500/10 border-sky-600/20 shadow-2xl shadow-sky-600/8'
@@ -204,7 +204,7 @@ export function Hero({ isDark }: HeroProps) {
           transition={{ duration: 0.8, delay: 0.5 }}
           className="mb-8"
         >
-          <p className="text-lg sm:text-xl md:text-2xl opacity-70 max-w-2xl mx-auto leading-relaxed px-4">
+          <p className="text-lg sm:text-xl md:text-2xl opacity-70 max-w-xl mx-auto leading-relaxed px-4">
             Crafting exceptional digital experiences and connecting businesses with world-class talent.
           </p>
         </motion.div>
@@ -269,7 +269,7 @@ export function Hero({ isDark }: HeroProps) {
                 handleSubmit(e);
               }
             }} 
-            className="flex flex-col gap-4 max-w-2xl mx-auto px-4" 
+            className="flex flex-col gap-4 w-[640px] mx-auto"
             role="form" 
             aria-label="Project consultation signup"
           >
