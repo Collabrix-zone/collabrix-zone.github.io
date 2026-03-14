@@ -58,7 +58,7 @@ export function HomePage({ isDark, onNavigate }: HomePageProps) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
                 className="tracking-tight leading-[0.92] mb-8"
-                style={{ fontSize: 'clamp(3rem, 8vw, 6rem)' }}
+                style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}
               >
                 Where{' '}
                 <span className="italic bg-gradient-to-br from-sky-600 to-sky-800 dark:from-sky-300 dark:to-sky-500 bg-clip-text text-transparent">
@@ -191,7 +191,7 @@ export function HomePage({ isDark, onNavigate }: HomePageProps) {
             className="mb-14 sm:mb-20"
           >
             <p className="text-sm font-semibold tracking-widest uppercase opacity-50 mb-3">What we do</p>
-            <h2 id="services-heading" className="tracking-tight leading-tight max-w-2xl" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)' }}>
+            <h2 id="services-heading" className="tracking-tight leading-tight max-w-2xl" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.5rem)' }}>
               Two powerful services, one exceptional partner
             </h2>
           </motion.div>
@@ -327,7 +327,7 @@ export function HomePage({ isDark, onNavigate }: HomePageProps) {
                 transition={{ duration: 0.7 }}
               >
                 <p className="text-sm font-semibold tracking-widest uppercase opacity-50 mb-3">Why us</p>
-                <h2 id="why-heading" className="tracking-tight leading-tight mb-6" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
+                <h2 id="why-heading" className="tracking-tight leading-tight mb-6" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.25rem)' }}>
                   The perfect blend of creative excellence and talent expertise
                 </h2>
                 <p className="text-base sm:text-lg opacity-65 leading-relaxed mb-8">
@@ -404,7 +404,7 @@ export function HomePage({ isDark, onNavigate }: HomePageProps) {
               <h2
                 id="cta-heading"
                 className="tracking-tight leading-tight mb-6 max-w-2xl"
-                style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)' }}
+                style={{ fontSize: 'clamp(1.5rem, 3vw, 2.5rem)' }}
               >
                 Let's build something remarkable together
               </h2>
