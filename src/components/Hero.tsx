@@ -6,10 +6,9 @@ import { ArrowRight, Sparkles, Calendar, Users, Zap } from 'lucide-react';
 
 interface HeroProps {
   isDark: boolean;
-  onCountdownEnd?: () => void;
 }
 
-export function Hero({ isDark, onCountdownEnd }: HeroProps) {
+export function Hero({ isDark }: HeroProps) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -19,10 +18,9 @@ export function Hero({ isDark, onCountdownEnd }: HeroProps) {
     minutes: 0,
     seconds: 0
   });
-  const [countdownEnded, setCountdownEnded] = useState(false);
 
   useEffect(() => {
-    const targetDate = new Date('2025-11-01T00:00:00Z').getTime();
+    const targetDate = new Date('2026-05-01T00:00:00Z').getTime();
     
     const updateCountdown = () => {
       const now = new Date().getTime();
@@ -35,13 +33,13 @@ export function Hero({ isDark, onCountdownEnd }: HeroProps) {
           minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
           seconds: Math.floor((difference % (1000 * 60)) / 1000)
         });
-      } else if (!countdownEnded) {
-        // Countdown has ended
-        setCountdownEnded(true);
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-        if (onCountdownEnd) {
-          onCountdownEnd();
-        }
+      } else {
+        setTimeLeft({
+          days: 0,
+          hours: 0,
+          minutes: 0,
+          seconds: 0
+        });
       }
     };
 
@@ -49,7 +47,7 @@ export function Hero({ isDark, onCountdownEnd }: HeroProps) {
     const interval = setInterval(updateCountdown, 1000);
     
     return () => clearInterval(interval);
-  }, [countdownEnded, onCountdownEnd]);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -193,7 +191,7 @@ export function Hero({ isDark, onCountdownEnd }: HeroProps) {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.6 }}
             >
-              Design
+              Design & Talent
             </motion.span>
             <span> Studio</span>
           </h1>
@@ -207,7 +205,7 @@ export function Hero({ isDark, onCountdownEnd }: HeroProps) {
           className="mb-8"
         >
           <p className="text-lg sm:text-xl md:text-2xl opacity-70 max-w-2xl mx-auto leading-relaxed px-4">
-            Crafting digital experiences that captivate, convert, and inspire.
+            Crafting exceptional digital experiences and connecting businesses with world-class talent.
           </p>
         </motion.div>
 
@@ -380,8 +378,8 @@ export function Hero({ isDark, onCountdownEnd }: HeroProps) {
           }`} />
           
           <div className="flex items-center gap-3">
-            <Sparkles size={20} className="text-orange-500" />
-            <span className="text-lg">Pixel Perfect</span>
+            <Users size={20} className="text-purple-500" />
+            <span className="text-lg">Elite Talent</span>
           </div>
           
           <div className={`hidden sm:block w-2 h-2 rounded-full ${
@@ -389,7 +387,7 @@ export function Hero({ isDark, onCountdownEnd }: HeroProps) {
           }`} />
           
           <div className="flex items-center gap-3">
-            <Sparkles size={20} className="text-sky-600 dark:text-sky-400" />
+            <Zap size={20} className="text-orange-500" />
             <span className="text-lg">Client-Focused</span>
           </div>
         </motion.div>

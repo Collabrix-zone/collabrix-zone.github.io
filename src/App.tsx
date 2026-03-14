@@ -7,8 +7,6 @@ import { PrivacyPage } from './components/PrivacyPage';
 import { TermsPage } from './components/TermsPage';
 import { NotFoundPage } from './components/NotFoundPage';
 import { Loader } from './components/Loader';
-import { LaunchTransition } from './components/LaunchTransition';
-import { AgencySite } from './components/AgencySite';
 
 type Page = 'home' | 'privacy' | 'terms' | '404';
 
@@ -16,17 +14,6 @@ export default function App() {
   const [isDark, setIsDark] = useState(false);
   const [currentPage, setCurrentPage] = useState<Page>('home');
   const [isLoading, setIsLoading] = useState(true);
-  const [showTransition, setShowTransition] = useState(false);
-  const [showAgencySite, setShowAgencySite] = useState(false);
-
-  const handleCountdownEnd = () => {
-    setShowTransition(true);
-  };
-
-  const handleTransitionComplete = () => {
-    setShowTransition(false);
-    setShowAgencySite(true);
-  };
 
   useEffect(() => {
     // Initialize app and handle URL routing
@@ -72,23 +59,9 @@ export default function App() {
       }
     };
 
-    // TEST FEATURE: Press 'L' key to simulate launch (for testing the transition)
-    const handleKeyPress = (e: KeyboardEvent) => {
-      if (e.key === 'L' || e.key === 'l') {
-        if (currentPage === 'home' && !showAgencySite && !showTransition) {
-          console.log('🚀 Testing launch transition...');
-          handleCountdownEnd();
-        }
-      }
-    };
-
     window.addEventListener('popstate', handlePopState);
-    window.addEventListener('keydown', handleKeyPress);
-    return () => {
-      window.removeEventListener('popstate', handlePopState);
-      window.removeEventListener('keydown', handleKeyPress);
-    };
-  }, [currentPage, showAgencySite, showTransition]);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   // Show loader while initializing
   if (isLoading) {
@@ -133,20 +106,8 @@ export default function App() {
     return <NotFoundPage isDark={isDark} toggleTheme={toggleTheme} onNavigateHome={navigateHome} />;
   }
 
-  // Show Agency Site if countdown ended
-  if (showAgencySite) {
-    return <AgencySite isDark={isDark} toggleTheme={toggleTheme} />;
-  }
-
-  // Home page (Coming Soon)
+  // Home page
   return (
-    <>
-      {showTransition && (
-        <LaunchTransition 
-          isDark={isDark} 
-          onComplete={handleTransitionComplete} 
-        />
-      )}
     <div className="min-h-screen bg-background text-foreground transition-colors duration-700" lang="en">
       {/* Subtle background pattern */}
       <div 
@@ -183,15 +144,9 @@ export default function App() {
       
       <div className="relative z-10 flex flex-col min-h-screen">
         <Header isDark={isDark} toggleTheme={toggleTheme} />
-        <Hero isDark={isDark} onCountdownEnd={handleCountdownEnd} />
+        <Hero isDark={isDark} />
         <Footer isDark={isDark} onNavigate={navigateTo} />
-        
-        {/* TEST MODE: Indicator for testing launch transition */}
-        <div className="fixed bottom-4 right-4 px-4 py-2 rounded-lg bg-black/50 text-white text-xs backdrop-blur-sm opacity-30 hover:opacity-100 transition-opacity pointer-events-none">
-          Press <kbd className="px-2 py-1 bg-white/20 rounded">L</kbd> to test launch
-        </div>
       </div>
     </div>
-    </>
   );
 }

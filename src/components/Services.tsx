@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Palette, Zap, Users, Target, ArrowUpRight } from 'lucide-react';
+import { Palette, Zap, Users, Target, ArrowUpRight, UserCheck, Briefcase } from 'lucide-react';
 
 interface ServicesProps {
   isDark: boolean;
@@ -20,16 +20,28 @@ export function Services({ isDark }: ServicesProps) {
       color: 'from-orange-500 to-orange-600'
     },
     {
+      icon: UserCheck,
+      title: 'Talent Acquisition',
+      description: 'Connecting businesses with exceptional professionals across all industries',
+      color: 'from-purple-600 to-purple-700'
+    },
+    {
       icon: Users,
       title: 'User Research',
       description: 'Data-driven insights to understand your audience and optimize experiences',
       color: 'from-blue-600 to-blue-700'
     },
     {
+      icon: Briefcase,
+      title: 'HR Consulting',
+      description: 'Strategic talent management solutions to build and scale your team',
+      color: 'from-green-600 to-green-700'
+    },
+    {
       icon: Target,
       title: 'Brand Strategy',
       description: 'Comprehensive brand identity that resonates with your target market',
-      color: 'from-green-600 to-green-700'
+      color: 'from-rose-600 to-rose-700'
     }
   ];
 
@@ -58,12 +70,12 @@ export function Services({ isDark }: ServicesProps) {
           </h2>
           
           <p className="text-xl opacity-70 max-w-3xl mx-auto leading-relaxed">
-            We specialize in creating digital experiences that not only look stunning 
-            but also drive real business results.
+            We specialize in creating exceptional digital experiences and building high-performing teams 
+            that drive real business results.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => {
             const IconComponent = service.icon;
             
@@ -117,7 +129,7 @@ export function Services({ isDark }: ServicesProps) {
           className="text-center mt-16"
         >
           <p className="text-lg opacity-60 mb-8">
-            Ready to transform your digital presence?
+            Ready to transform your digital presence or build your dream team?
           </p>
           
           <motion.div

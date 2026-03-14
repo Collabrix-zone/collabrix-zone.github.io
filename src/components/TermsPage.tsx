@@ -126,8 +126,8 @@ export function TermsPage({
                     Description of Services
                   </h2>
                   <p className="text-sm sm:text-base lg:text-lg leading-relaxed mb-3 sm:mb-4">
-                    Collabrix is a premium UX/UI design agency
-                    that provides:
+                    Collabrix is a premium UX/UI design and talent
+                    acquisition agency that provides:
                   </p>
                   <ul className="list-disc pl-4 sm:pl-6 space-y-2 text-sm sm:text-base lg:text-lg mb-4">
                     <li>
@@ -138,11 +138,14 @@ export function TermsPage({
                     <li>Website and application design</li>
                     <li>Design strategy and research</li>
                     <li>Prototype development</li>
+                    <li>Talent acquisition and recruitment</li>
+                    <li>HR consulting and strategy</li>
+                    <li>Team building and staffing solutions</li>
                   </ul>
                   <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
                     Our services are designed to help businesses
-                    create digital experiences that captivate,
-                    convert, and inspire their audiences.
+                    create exceptional digital experiences and build
+                    high-performing teams that drive success.
                   </p>
                 </section>
 
