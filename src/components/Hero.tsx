@@ -101,8 +101,8 @@ export function Hero({ isDark }: HeroProps) {
                 <motion.div 
                   className="font-bold text-sm sm:text-lg lg:text-xl tracking-wider"
                   key={timeLeft.days}
-                  initial={{ scale: 1.2, color: isDark ? '#38bdf8' : '#0369a1' }}
-                  animate={{ scale: 1, color: 'inherit' }}
+                  initial={{ scale: 1.2 }}
+                  animate={{ scale: 1 }}
                   transition={{ duration: 0.3 }}
                 >
                   {timeLeft.days}
@@ -122,8 +122,8 @@ export function Hero({ isDark }: HeroProps) {
                 <motion.div 
                   className="font-bold text-sm sm:text-lg lg:text-xl tracking-wider"
                   key={timeLeft.hours}
-                  initial={{ scale: 1.2, color: isDark ? '#38bdf8' : '#0369a1' }}
-                  animate={{ scale: 1, color: 'inherit' }}
+                  initial={{ scale: 1.2 }}
+                  animate={{ scale: 1 }}
                   transition={{ duration: 0.3 }}
                 >
                   {timeLeft.hours.toString().padStart(2, '0')}
@@ -143,8 +143,8 @@ export function Hero({ isDark }: HeroProps) {
                 <motion.div 
                   className="font-bold text-sm sm:text-lg lg:text-xl tracking-wider"
                   key={timeLeft.minutes}
-                  initial={{ scale: 1.2, color: isDark ? '#38bdf8' : '#0369a1' }}
-                  animate={{ scale: 1, color: 'inherit' }}
+                  initial={{ scale: 1.2 }}
+                  animate={{ scale: 1 }}
                   transition={{ duration: 0.3 }}
                 >
                   {timeLeft.minutes.toString().padStart(2, '0')}
@@ -164,8 +164,8 @@ export function Hero({ isDark }: HeroProps) {
                 <motion.div 
                   className="font-bold text-sm sm:text-lg lg:text-xl tracking-wider"
                   key={timeLeft.seconds}
-                  initial={{ scale: 1.2, color: isDark ? '#38bdf8' : '#0369a1' }}
-                  animate={{ scale: 1, color: 'inherit' }}
+                  initial={{ scale: 1.2 }}
+                  animate={{ scale: 1 }}
                   transition={{ duration: 0.3 }}
                 >
                   {timeLeft.seconds.toString().padStart(2, '0')}
@@ -183,7 +183,7 @@ export function Hero({ isDark }: HeroProps) {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="mb-6"
         >
-          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[0.9] mb-4">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.15] sm:leading-[1.05] md:leading-[0.95] lg:leading-[0.9] mb-4">
             <span>Premium </span>
             <motion.span
               className="bg-gradient-to-r from-sky-600 via-sky-500 to-orange-500 bg-clip-text text-transparent dark:from-sky-400 dark:via-sky-300 dark:to-orange-400"

@@ -289,4 +289,67 @@
 
 html {
   font-size: var(--font-size);
+  /* Enable smooth font scaling with browser zoom */
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Responsive base font size for better scaling across devices */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px; /* Slightly smaller on mobile */
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  html {
+    font-size: 15px; /* Medium devices */
+  }
+}
+
+@media (min-width: 1025px) {
+  html {
+    font-size: 16px; /* Desktop and larger */
+  }
+}
+
+/* Ensure all content respects user's browser zoom settings */
+* {
+  max-width: 100%;
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Focus visible for keyboard navigation - WCAG AAA */
+.focus\:not-sr-only:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
+  white-space: normal;
 }

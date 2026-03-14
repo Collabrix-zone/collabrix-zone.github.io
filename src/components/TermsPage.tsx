@@ -500,17 +500,6 @@ export function TermsPage({
                 <motion.button
                   onClick={() => onNavigate("privacy")}
                   className="opacity-60 hover:opacity-100 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary rounded-lg px-3 py-2 cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
-                  style={{
-                    '--tw-bg-opacity': '0'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = 'var(--button-hover-bg)';
-                    e.currentTarget.style.color = 'var(--button-hover-text)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'transparent';
-                    e.currentTarget.style.color = 'inherit';
-                  }}
                   whileHover={{ y: -1 }}
                 >
                   Privacy
