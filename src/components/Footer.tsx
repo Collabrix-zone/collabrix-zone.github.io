@@ -18,7 +18,7 @@ export function Footer({ isDark, onNavigate }: FooterProps) {
       role="contentinfo"
       aria-label="Site footer"
     >
-      <div className="w-[896px] mx-auto">
+      <div className="w-full max-w-[896px] mx-auto px-4 sm:px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8">
           {/* Left side - Brand */}
           <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">

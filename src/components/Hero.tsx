@@ -269,7 +269,7 @@ export function Hero({ isDark }: HeroProps) {
                 handleSubmit(e);
               }
             }} 
-            className="flex flex-col gap-4 w-[640px] mx-auto"
+            className="flex flex-col gap-4 w-full max-w-[640px] mx-auto px-4 sm:px-0"
             role="form" 
             aria-label="Project consultation signup"
           >
