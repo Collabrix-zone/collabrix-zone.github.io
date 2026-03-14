@@ -42,7 +42,7 @@ export function AboutPage({ isDark, onNavigate }: AboutPageProps) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
                 className="tracking-tight leading-[0.92] mb-8"
-                style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}
+                style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)' }}
               >
                 We bridge the gap between{' '}
                 <span className="italic bg-gradient-to-br from-sky-600 to-sky-800 dark:from-sky-300 dark:to-sky-500 bg-clip-text text-transparent">

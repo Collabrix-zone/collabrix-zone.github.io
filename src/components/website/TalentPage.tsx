@@ -93,7 +93,7 @@ export function TalentPage({ isDark, onNavigate }: TalentPageProps) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
                 className="tracking-tight leading-[0.92] mb-8"
-                style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}
+                style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)' }}
               >
                 We find the{' '}
                 <span className="italic bg-gradient-to-br from-orange-500 to-orange-700 dark:from-orange-300 dark:to-orange-500 bg-clip-text text-transparent">
