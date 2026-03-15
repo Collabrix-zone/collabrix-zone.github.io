@@ -83,16 +83,16 @@ export function InfiniteMarquee({
     >
       <div
         ref={trackRef}
-        style={{ display: 'flex', width: 'max-content', willChange: 'transform' }}
+        style={{ display: 'flex', width: 'max-content', maxWidth: 'none', willChange: 'transform' }}
       >
         <div
           ref={copy1Ref}
-          style={{ display: 'flex', alignItems: 'center', flexShrink: 0, whiteSpace: 'nowrap' }}
+          style={{ display: 'flex', alignItems: 'center', flexShrink: 0, whiteSpace: 'nowrap', maxWidth: 'none' }}
         >
           {children}
         </div>
         <div
-          style={{ display: 'flex', alignItems: 'center', flexShrink: 0, whiteSpace: 'nowrap' }}
+          style={{ display: 'flex', alignItems: 'center', flexShrink: 0, whiteSpace: 'nowrap', maxWidth: 'none' }}
           aria-hidden="true"
         >
           {children}
