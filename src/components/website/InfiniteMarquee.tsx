@@ -2,6 +2,7 @@ import { ReactNode, useRef, useEffect } from 'react';
 
 interface InfiniteMarqueeProps {
   children: ReactNode;
+  /** Seconds to scroll one full copy of content */
   speed?: number;
   reverse?: boolean;
   className?: string;
@@ -23,64 +24,80 @@ export function InfiniteMarquee({
     const copy1 = copy1Ref.current;
     if (!track || !copy1) return;
 
-    const setWidth = () => {
+    let x = 0;
+    let copyWidth = 0;
+    let lastTs: number | null = null;
+    let animId: number;
+    const dir = reverse ? 1 : -1;
+
+    const measure = () => {
       const w = copy1.getBoundingClientRect().width;
-      if (w > 0) track.style.setProperty('--marquee-copy-width', `${w}px`);
+      if (w > 0 && Math.abs(w - copyWidth) > 0.5) {
+        copyWidth = w;
+        x = 0; // reset position on size change so seam stays clean
+      }
     };
 
-    setWidth();
-    // Re-measure after fonts load
-    document.fonts.ready.then(setWidth);
+    const tick = (ts: number) => {
+      if (lastTs === null) lastTs = ts;
+      const delta = ts - lastTs;
+      lastTs = ts;
 
-    const ro = new ResizeObserver(setWidth);
+      if (copyWidth > 0) {
+        // pixels to move this frame: copyWidth / (speed * 1000ms) * delta ms
+        x += dir * (copyWidth / (speed * 1000)) * delta;
+        if (x <= -copyWidth) x += copyWidth;
+        if (x >= copyWidth)  x -= copyWidth;
+        track.style.transform = `translate3d(${x}px, 0, 0)`;
+      }
+
+      animId = requestAnimationFrame(tick);
+    };
+
+    // Measure immediately, then again after fonts settle
+    measure();
+    document.fonts.ready.then(measure);
+
+    const ro = new ResizeObserver(measure);
     ro.observe(copy1);
-    return () => ro.disconnect();
-  }, []);
+
+    animId = requestAnimationFrame(tick);
+
+    return () => {
+      cancelAnimationFrame(animId);
+      ro.disconnect();
+    };
+  }, [speed, reverse]);
 
   return (
-    <>
-      <style>{`
-        @keyframes collabrix-marquee {
-          from { transform: translateX(0); }
-          to   { transform: translateX(calc(-1 * var(--marquee-copy-width, 0px))); }
-        }
-      `}</style>
-
+    <div
+      className={`overflow-hidden ${className}`}
+      style={
+        fadeEdges
+          ? {
+              maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
+              WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
+            }
+          : undefined
+      }
+    >
       <div
-        className={`overflow-hidden ${className}`}
-        style={
-          fadeEdges
-            ? {
-                maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
-                WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
-              }
-            : undefined
-        }
+        ref={trackRef}
+        style={{ display: 'flex', width: 'max-content', willChange: 'transform' }}
       >
         <div
-          ref={trackRef}
-          style={{
-            display: 'flex',
-            width: 'max-content',
-            willChange: 'transform',
-            animation: `collabrix-marquee ${speed}s linear infinite`,
-            animationDirection: reverse ? 'reverse' : 'normal',
-          }}
+          ref={copy1Ref}
+          style={{ display: 'flex', alignItems: 'center', flexShrink: 0, whiteSpace: 'nowrap' }}
         >
-          <div
-            ref={copy1Ref}
-            style={{ display: 'flex', alignItems: 'center', flexShrink: 0, whiteSpace: 'nowrap' }}
-          >
-            {children}
-          </div>
-          <div
-            style={{ display: 'flex', alignItems: 'center', flexShrink: 0, whiteSpace: 'nowrap' }}
-            aria-hidden="true"
-          >
-            {children}
-          </div>
+          {children}
+        </div>
+        <div
+          style={{ display: 'flex', alignItems: 'center', flexShrink: 0, whiteSpace: 'nowrap' }}
+          aria-hidden="true"
+        >
+          {children}
         </div>
       </div>
-    </>
+    </div>
   );
 }
