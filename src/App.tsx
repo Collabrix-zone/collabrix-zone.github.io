@@ -141,13 +141,13 @@ export default function App() {
   return (
     <div className="min-h-screen bg-background text-foreground transition-colors duration-700" lang="en">
       {/* Testing Shortcut Indicator */}
-      <div className="fixed bottom-4 left-4 z-50 text-xs opacity-30 hover:opacity-100 transition-opacity">
+      {/* <div className="fixed bottom-4 left-4 z-50 text-xs opacity-30 hover:opacity-100 transition-opacity">
         <div className={`px-3 py-2 rounded-lg ${
           isDark ? 'bg-white/10 text-white/70' : 'bg-black/10 text-black/70'
         }`}>
           Press <kbd className="px-1.5 py-0.5 rounded bg-white/20 font-mono">Ctrl+Shift+L</kbd> to {isLaunched ? 'hide' : 'preview'} launch
         </div>
-      </div>
+      </div> */}
 
       {isLaunched ? (
         <MainWebsite isDark={isDark} toggleTheme={toggleTheme} onNavigate={navigateTo} />
