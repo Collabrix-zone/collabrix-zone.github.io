@@ -8,6 +8,7 @@ import { TermsPage } from './components/TermsPage';
 import { NotFoundPage } from './components/NotFoundPage';
 import { Loader } from './components/Loader';
 import { MainWebsite } from './components/MainWebsite';
+import { LaunchCelebration } from './components/LaunchCelebration';
 
 type Page = 'home' | 'privacy' | 'terms' | '404';
 
@@ -28,17 +29,42 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
   const [isLoading, setIsLoading] = useState(true);
   const [isLaunched, setIsLaunched] = useState(false);
+  const [showCelebration, setShowCelebration] = useState(false);
 
   useEffect(() => {
-    // Check if countdown has ended
-    const targetDate = new Date('2026-05-01T00:00:00Z').getTime();
+    const LAUNCH_DATE = '2026-05-01';
+    const targetDate = new Date(`${LAUNCH_DATE}T00:00:00Z`).getTime();
+    const dayAfterLaunch = new Date(`${LAUNCH_DATE}T00:00:00Z`).getTime() + 24 * 60 * 60 * 1000;
     const now = new Date().getTime();
-    
-    if (now >= targetDate) {
+
+    // Check URL param for testing: ?celebrate to preview celebration
+    const params = new URLSearchParams(window.location.search);
+    const testCelebrate = params.get('celebrate') !== null;
+
+    if (testCelebrate) {
+      // Testing mode: show celebration regardless of date
+      const dismissed = sessionStorage.getItem('collabrix-celebration-dismissed');
+      if (dismissed) {
+        setIsLaunched(true);
+      } else {
+        setShowCelebration(true);
+        setIsLaunched(true);
+      }
+    } else if (now >= dayAfterLaunch) {
+      // After launch day: straight to website
       setIsLaunched(true);
+    } else if (now >= targetDate) {
+      // Launch day: show celebration (unless already dismissed this session)
+      const dismissed = sessionStorage.getItem('collabrix-celebration-dismissed');
+      if (dismissed) {
+        setIsLaunched(true);
+      } else {
+        setShowCelebration(true);
+        setIsLaunched(true);
+      }
     }
 
-    // Check localStorage for testing skip
+    // Check localStorage for testing skip (Ctrl+Shift+L)
     const testingSkip = localStorage.getItem('collabrix-launched');
     if (testingSkip === 'true') {
       setIsLaunched(true);
@@ -148,6 +174,19 @@ export default function App() {
           Press <kbd className="px-1.5 py-0.5 rounded bg-white/20 font-mono">Ctrl+Shift+L</kbd> to {isLaunched ? 'hide' : 'preview'} launch
         </div>
       </div> */}
+
+      {showCelebration && (
+        <LaunchCelebration
+          isDark={isDark}
+          onEnterSite={() => {
+            setShowCelebration(false);
+            sessionStorage.setItem('collabrix-celebration-dismissed', 'true');
+            // Show the loader for a grand entrance
+            setIsLoading(true);
+            setTimeout(() => setIsLoading(false), 2000);
+          }}
+        />
+      )}
 
       {isLaunched ? (
         <MainWebsite isDark={isDark} toggleTheme={toggleTheme} onNavigate={navigateTo} />

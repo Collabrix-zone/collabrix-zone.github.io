@@ -6,6 +6,7 @@ import { MagneticWrapper } from './MagneticWrapper';
 import { InfiniteMarquee } from './InfiniteMarquee';
 import { TiltCard } from './TiltCard';
 import { WordReveal } from './WordReveal';
+import { AIAssistant } from './AIAssistant';
 
 interface HomePageProps {
   isDark: boolean;
@@ -86,19 +87,28 @@ export function HomePage({ isDark, onNavigate }: HomePageProps) {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-                className="tracking-tight leading-[0.92] mb-8"
+                className="tracking-tight leading-[0.92] mb-4"
                 style={{ fontSize: 'clamp(1.75rem, 3vw, 2.75rem)' }}
               >
-                Where{' '}
+                Premium{' '}
                 <span className="bg-gradient-to-br from-sky-600 to-sky-800 dark:from-sky-300 dark:to-sky-500 bg-clip-text text-transparent">
-                  Great Design
+                  UX/UI Design Studio
                 </span>
                 <br />
-                Meets{' '}
+                &{' '}
                 <span className="bg-gradient-to-br from-orange-500 to-orange-700 dark:from-orange-300 dark:to-orange-500 bg-clip-text text-transparent">
-                  Great Talent
+                  Talent Acquisition Firm
                 </span>
               </motion.h1>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="text-lg sm:text-xl opacity-50 mb-8 italic"
+                style={{ fontSize: 'clamp(1rem, 1.5vw, 1.25rem)' }}
+              >
+                Where Great Design Meets Great Talent
+              </motion.p>
 
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
@@ -240,7 +250,7 @@ export function HomePage({ isDark, onNavigate }: HomePageProps) {
           >
             <p className="text-sm font-semibold tracking-widest uppercase opacity-50 mb-3">What we do</p>
             <h2 id="services-heading" className="tracking-tight leading-tight max-w-2xl" style={{ fontSize: 'clamp(1.25rem, 2.5vw, 2rem)' }}>
-              Two powerful services, one exceptional partner
+              UX/UI Design & Talent Acquisition Services
             </h2>
           </motion.div>
 
@@ -383,7 +393,7 @@ export function HomePage({ isDark, onNavigate }: HomePageProps) {
               >
                 <p className="text-sm font-semibold tracking-widest uppercase opacity-50 mb-3">Why us</p>
                 <h2 id="why-heading" className="tracking-tight leading-tight mb-6" style={{ fontSize: 'clamp(1.25rem, 2vw, 1.875rem)' }}>
-                  The perfect blend of creative excellence and talent expertise
+                  Why Choose The Collabrix
                 </h2>
                 <p className="text-base sm:text-lg opacity-65 leading-relaxed mb-8">
                   We don't just deliver work — we build long-term partnerships grounded
@@ -440,6 +450,158 @@ export function HomePage({ isDark, onNavigate }: HomePageProps) {
         </div>
       </section>
 
+      {/* ── AI ASSISTANT ──────────────────────────────────────────────── */}
+      <AIAssistant isDark={isDark} />
+
+      {/* ── STATIC SERVICES LIST (crawlable) ────────────────────────── */}
+      <section className="sr-only" aria-label="Complete list of services offered by The Collabrix">
+        <h2>Our Services</h2>
+        <ul>
+          <li>UX/UI Design</li>
+          <li>Product Design</li>
+          <li>Brand Identity</li>
+          <li>Design Systems</li>
+          <li>Mobile App Design</li>
+          <li>Web Design</li>
+          <li>Talent Acquisition</li>
+          <li>Full-Cycle Recruiting</li>
+          <li>Executive Search</li>
+          <li>HR Consulting</li>
+          <li>Team Building</li>
+          <li>Leadership Hiring</li>
+          <li>Talent Strategy</li>
+        </ul>
+      </section>
+
+      {/* ── ABOUT THE COLLABRIX (expanded body copy) ─────────────────── */}
+      <section className="px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36" aria-labelledby="about-heading">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="max-w-3xl"
+          >
+            <p className="text-sm font-semibold tracking-widest uppercase opacity-50 mb-3">About Us</p>
+            <h2 id="about-heading" className="tracking-tight leading-tight mb-8" style={{ fontSize: 'clamp(1.25rem, 2.5vw, 2rem)' }}>
+              Two Superpowers, One Partner — Design & Talent Under One Roof
+            </h2>
+            <div className="space-y-5 text-base sm:text-lg opacity-70 leading-relaxed">
+              <p>
+                The Collabrix is a premium studio that brings together two disciplines most companies struggle to find in one place: world-class UX/UI design and full-service talent acquisition. We believe that building exceptional products and hiring exceptional people are two sides of the same coin — and we do both with equal precision, passion, and craft.
+              </p>
+              <p>
+                On the design side, we deliver end-to-end UX/UI design, product design, brand identity, design systems, and mobile app design. Whether you are a startup shaping your first product or an enterprise redesigning a complex platform, our design team creates digital experiences that are intuitive, beautiful, and built to convert. We obsess over every interaction, every pixel, and every user journey — because great design is not just how it looks, it is how it works.
+              </p>
+              <p>
+                On the talent side, we operate a full-cycle talent acquisition practice covering executive search, leadership hiring, HR consulting, team building, and talent strategy — across all industries and functions. From individual contributors to C-suite executives, from tech and finance to operations, marketing, and beyond, we help organizations find and secure the people who will drive their growth. Our recruiting methodology blends deep market research, precision sourcing, and a consultative approach that treats every hire as a strategic investment.
+              </p>
+              <p>
+                What makes The Collabrix different is that these two practices are not separate business units bolted together — they are built to work as one. Need a beautifully designed product and the engineering team to build it? We can deliver both. Need a brand refresh and a new Head of Marketing to own it? That is exactly what we do. This integrated model means faster timelines, tighter alignment, and a single partner who understands the full picture.
+              </p>
+              <p>
+                We work with startups, scaleups, and enterprises across all industries. Our clients come to us because they want a partner who treats their business as their own — one who delivers premium quality without the overhead of managing multiple agencies. Whether you need design, talent, or both, The Collabrix is built to help you move faster, hire smarter, and build better.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── FAQ ──────────────────────────────────────────────────────── */}
+      <section className="px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36" aria-labelledby="faq-heading">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="mb-14 sm:mb-20"
+          >
+            <p className="text-sm font-semibold tracking-widest uppercase opacity-50 mb-3">FAQ</p>
+            <h2 id="faq-heading" className="tracking-tight leading-tight max-w-2xl" style={{ fontSize: 'clamp(1.25rem, 2.5vw, 2rem)' }}>
+              Frequently Asked Questions
+            </h2>
+          </motion.div>
+          <div className="max-w-3xl space-y-8">
+            {[
+              {
+                q: 'What does The Collabrix do?',
+                a: 'The Collabrix is a premium studio offering two services: world-class UX/UI design (including product design, branding, and mobile apps) and full-service talent acquisition across all industries (including executive search, full-cycle recruiting, HR consulting, and team building).',
+              },
+              {
+                q: 'What industries does The Collabrix recruit for?',
+                a: 'The Collabrix recruits across all industries and functions — from tech and finance to operations, marketing, and leadership roles. We place individual contributors through C-suite executives.',
+              },
+              {
+                q: 'How is The Collabrix different from a regular design agency?',
+                a: 'Unlike a traditional design agency, The Collabrix also operates a full talent acquisition practice. This means we can design your product and help you hire the team to build and grow it — all under one roof.',
+              },
+              {
+                q: 'How do I get started with The Collabrix?',
+                a: 'You can reach us at hello@thecollabrix.com or use the contact form on our website. Tell us whether you need design services, talent acquisition support, or both — and we\u2019ll set up a discovery call.',
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+              >
+                <h3 className="text-lg sm:text-xl font-bold mb-2">{item.q}</h3>
+                <p className="text-base opacity-65 leading-relaxed">{item.a}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* FAQ Schema (JSON-LD) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: [
+                {
+                  '@type': 'Question',
+                  name: 'What does The Collabrix do?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'The Collabrix is a premium studio offering two services: world-class UX/UI design (including product design, branding, and mobile apps) and full-service talent acquisition across all industries (including executive search, full-cycle recruiting, HR consulting, and team building).',
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'What industries does The Collabrix recruit for?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'The Collabrix recruits across all industries and functions — from tech and finance to operations, marketing, and leadership roles. We place individual contributors through C-suite executives.',
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'How is The Collabrix different from a regular design agency?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'Unlike a traditional design agency, The Collabrix also operates a full talent acquisition practice. This means we can design your product and help you hire the team to build and grow it — all under one roof.',
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'How do I get started with The Collabrix?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'You can reach us at hello@thecollabrix.com or use the contact form on our website. Tell us whether you need design services, talent acquisition support, or both — and we\u2019ll set up a discovery call.',
+                  },
+                },
+              ],
+            }),
+          }}
+        />
+      </section>
+
       {/* ── CTA ───────────────────────────────────────────────────────── */}
       <section className="px-4 sm:px-6 lg:px-8 pb-20 sm:pb-28 lg:pb-36" aria-labelledby="cta-heading">
         <div className="max-w-7xl mx-auto">
@@ -466,7 +628,7 @@ export function HomePage({ isDark, onNavigate }: HomePageProps) {
                 className="tracking-tight leading-tight mb-6 max-w-2xl"
                 style={{ fontSize: 'clamp(1.25rem, 2.5vw, 2rem)' }}
               >
-                Let's build something remarkable together
+                Work With Us — Start Your Project or Hire Top Talent
               </h2>
               <p className="text-lg opacity-70 mb-10 max-w-xl leading-relaxed">
                 Whether you need exceptional design or world-class talent, we're ready to help you get there.

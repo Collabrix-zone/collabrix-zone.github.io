@@ -41,18 +41,21 @@ export function Footer({ isDark, onNavigate }: FooterProps) {
               <path d="M264.838 0.67547H267.495V27.3325H264.838V0.67547Z" fill={isDark ? '#ffffff' : '#1a1a1a'}/>
               <path d="M275.524 0.67547H278.633L285 11.0498L291.408 0.67547H294.477L286.543 13.557L295 27.3325H291.891L284.984 16.084L278.054 27.3325H274.945L283.442 13.5729L275.524 0.67547Z" fill={isDark ? '#ffffff' : '#1a1a1a'}/>
             </svg>
-            <div className="flex items-center gap-2 text-sm opacity-60">
-              <span>Made with</span>
-              <motion.div
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <Heart
-                  size={14}
-                  className="text-red-500 fill-current"
-                />
-              </motion.div>
-              <span>in India</span>
+            <div className="flex flex-col items-center sm:items-start gap-1">
+              <div className="flex items-center gap-2 text-sm opacity-60">
+                <span>Made with</span>
+                <motion.div
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  <Heart
+                    size={14}
+                    className="text-red-500 fill-current"
+                  />
+                </motion.div>
+                <span>in India</span>
+              </div>
+              <span className="text-xs opacity-40">Based in India, serving clients globally</span>
             </div>
           </div>
 
@@ -82,7 +85,7 @@ export function Footer({ isDark, onNavigate }: FooterProps) {
             </motion.a>
 
             <motion.a
-              href="https://www.linkedin.com/company/collabrix-zone-pvt-ltd/?viewAsMember=true"
+              href="https://www.linkedin.com/company/collabrix-zone-pvt-ltd/"
               target="_blank"
               rel="noopener noreferrer"
               className={`p-3 rounded-xl transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary min-h-[48px] min-w-[48px] flex items-center justify-center ${

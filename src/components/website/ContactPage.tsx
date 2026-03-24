@@ -6,7 +6,6 @@ import { MagneticWrapper } from './MagneticWrapper';
 import { InfiniteMarquee } from './InfiniteMarquee';
 import { TiltCard } from './TiltCard';
 import { WordReveal } from './WordReveal';
-
 const CONTACT_MARQUEE = [
   'Get in Touch', '24hr Response', 'Free Consultation', 'Design Projects',
   'Talent Search', 'Global Clients', 'Since 2022', 'India-Based',
@@ -118,7 +117,7 @@ export function ContactPage({ isDark }: ContactPageProps) {
           ))}
         </InfiniteMarquee>
       </div>
-<br></br>
+
       {/* ── MAIN CONTACT ──────────────────────────────────────────────── */}
       <section className="px-4 sm:px-6 lg:px-8 pb-20 sm:pb-28" aria-labelledby="form-heading">
         <div className="max-w-7xl mx-auto">
@@ -327,7 +326,7 @@ export function ContactPage({ isDark }: ContactPageProps) {
                   </a>
 
                   <a
-                    href="https://www.linkedin.com/company/collabrix-zone-pvt-ltd/?viewAsMember=true"
+                    href="https://www.linkedin.com/company/collabrix-zone-pvt-ltd/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-start gap-4 group focus:outline-none"
