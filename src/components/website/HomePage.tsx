@@ -680,12 +680,12 @@ export function HomePage({ isDark, onNavigate }: HomePageProps) {
                 <MagneticWrapper>
                   <a
                     href="#order-form"
-                    className={`block text-center w-full py-3 rounded-2xl font-semibold transition-all duration-300 focus:outline-none focus:ring-4 min-h-[48px] ${
+                    className={`block text-center w-full px-7 py-3 rounded-2xl font-semibold transition-all duration-300 focus:outline-none focus:ring-4 min-h-[48px] ${
                       plan.popular
                         ? 'bg-orange-600 text-white hover:bg-orange-700 focus:ring-orange-600/50'
                         : isDark
-                          ? 'border border-white/15 hover:bg-white/8 focus:ring-sky-400/50'
-                          : 'border border-gray-300 hover:bg-gray-50 focus:ring-sky-600/50'
+                          ? 'bg-white/10 border border-white/20 text-white hover:bg-white/15 focus:ring-sky-400/50'
+                          : 'bg-sky-800 text-white border border-sky-800 hover:bg-sky-900 focus:ring-sky-600/50'
                     }`}
                   >
                     Get Started
