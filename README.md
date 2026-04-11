@@ -1,4 +1,4 @@
-# Collabrix Zone - Coming Soon
+# Collabrix Zone
 
 A polished "coming soon" landing page for Collabrix Zone — a creative collaboration platform. The page features animated sections, a hero with motion effects, service highlights, and a newsletter/contact area, all built with a WCAG AAA-compliant design system.
 
