@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ArrowRight, ArrowUpRight, Sparkles, Palette, Users, Award, TrendingUp, Zap, Globe } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Sparkles, Palette, Users, Award, TrendingUp, Zap, Globe, FileText, Check, Upload } from 'lucide-react';
 import { AnimatedCounter } from './AnimatedCounter';
 import { Typewriter } from './Typewriter';
 import { MagneticWrapper } from './MagneticWrapper';
@@ -7,6 +7,7 @@ import { InfiniteMarquee } from './InfiniteMarquee';
 import { TiltCard } from './TiltCard';
 import { WordReveal } from './WordReveal';
 import { AIAssistant } from './AIAssistant';
+import { useState } from 'react';
 
 interface HomePageProps {
   isDark: boolean;
@@ -35,6 +36,162 @@ const PARTICLES = Array.from({ length: 24 }, (_, i) => ({
   duration: 4 + (i % 6),
   delay: (i * 0.35) % 4,
 }));
+
+function OrderForm({ isDark }: { isDark: boolean }) {
+  const [form, setForm] = useState({ name: '', email: '', service: 'resume', message: '' });
+  const [file, setFile] = useState<File | null>(null);
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!form.name || !form.email) return;
+    setSubmitting(true);
+    await new Promise((r) => setTimeout(r, 1200));
+    setSubmitting(false);
+    setSubmitted(true);
+    setTimeout(() => {
+      setSubmitted(false);
+      setForm({ name: '', email: '', service: 'resume', message: '' });
+      setFile(null);
+    }, 5000);
+  };
+
+  const inputClass = `w-full px-5 py-4 rounded-2xl border transition-all duration-300 focus:outline-none focus:ring-4 text-base ${
+    isDark
+      ? 'bg-white/5 border-white/10 focus:border-sky-400/50 focus:ring-sky-400/20 text-white placeholder:text-white/30'
+      : 'bg-white border-gray-200 focus:border-sky-600/50 focus:ring-sky-600/20 text-gray-900 placeholder:text-gray-400'
+  }`;
+
+  if (submitted) {
+    return (
+      <section id="order-form" className="px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36" aria-label="Order submitted">
+        <div className="max-w-2xl mx-auto text-center">
+          <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}>
+            <div className={`w-16 h-16 rounded-full mx-auto mb-6 flex items-center justify-center ${isDark ? 'bg-sky-400/10' : 'bg-sky-600/10'}`}>
+              <Check size={32} className="text-sky-600 dark:text-sky-400" />
+            </div>
+            <h3 className="text-2xl font-bold mb-3">Order Received!</h3>
+            <p className="text-base opacity-65">We'll get back to you within 24 hours with next steps.</p>
+          </motion.div>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section id="order-form" className="px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36" aria-labelledby="order-heading">
+      <div className="max-w-2xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-10"
+        >
+          <p className="text-sm font-semibold tracking-widest uppercase opacity-50 mb-3">Order</p>
+          <h2 id="order-heading" className="tracking-tight leading-tight" style={{ fontSize: 'clamp(1.25rem, 2.5vw, 2rem)' }}>
+            Place Your Order
+          </h2>
+        </motion.div>
+
+        <motion.form
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          onSubmit={handleSubmit}
+          className={`p-8 sm:p-10 rounded-3xl border ${isDark ? 'bg-white/4 border-white/10' : 'bg-white/70 border-gray-200/50'}`}
+        >
+          <div className="space-y-5">
+            <div>
+              <label htmlFor="order-name" className="block text-sm font-semibold mb-2 opacity-70">Name *</label>
+              <input
+                id="order-name"
+                type="text"
+                required
+                value={form.name}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                placeholder="Your full name"
+                className={inputClass}
+              />
+            </div>
+            <div>
+              <label htmlFor="order-email" className="block text-sm font-semibold mb-2 opacity-70">Email *</label>
+              <input
+                id="order-email"
+                type="email"
+                required
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                placeholder="you@example.com"
+                className={inputClass}
+              />
+            </div>
+            <div>
+              <label htmlFor="order-service" className="block text-sm font-semibold mb-2 opacity-70">Service *</label>
+              <select
+                id="order-service"
+                value={form.service}
+                onChange={(e) => setForm({ ...form, service: e.target.value })}
+                className={inputClass}
+              >
+                <option value="resume">Resume Design — ₹1,500 / $18</option>
+                <option value="portfolio">Portfolio Deck — ₹3,000 / $36</option>
+                <option value="bundle">Resume + Portfolio Bundle — ₹4,000 / $48</option>
+              </select>
+            </div>
+            <div>
+              <label htmlFor="order-message" className="block text-sm font-semibold mb-2 opacity-70">Message</label>
+              <textarea
+                id="order-message"
+                rows={4}
+                value={form.message}
+                onChange={(e) => setForm({ ...form, message: e.target.value })}
+                placeholder="Tell us about your experience, target roles, or any preferences..."
+                className={inputClass}
+              />
+            </div>
+            <div>
+              <label htmlFor="order-file" className="block text-sm font-semibold mb-2 opacity-70">
+                Attach File <span className="opacity-50 font-normal">(optional — existing resume, portfolio, etc.)</span>
+              </label>
+              <label
+                htmlFor="order-file"
+                className={`flex items-center gap-3 px-5 py-4 rounded-2xl border cursor-pointer transition-all duration-300 ${
+                  isDark
+                    ? 'bg-white/5 border-white/10 hover:border-white/20 text-white/50'
+                    : 'bg-white border-gray-200 hover:border-gray-300 text-gray-400'
+                }`}
+              >
+                <Upload size={18} aria-hidden="true" />
+                <span className="text-sm">{file ? file.name : 'Choose a file...'}</span>
+                <input
+                  id="order-file"
+                  type="file"
+                  className="sr-only"
+                  accept=".pdf,.doc,.docx,.fig,.zip,.png,.jpg"
+                  onChange={(e) => setFile(e.target.files?.[0] || null)}
+                />
+              </label>
+            </div>
+          </div>
+
+          <MagneticWrapper>
+            <button
+              type="submit"
+              disabled={submitting}
+              className="mt-8 w-full inline-flex items-center justify-center gap-3 px-7 py-4 bg-sky-800 dark:bg-sky-600 text-white rounded-2xl hover:bg-orange-600 dark:hover:bg-orange-600 transition-all duration-300 font-semibold focus:outline-none focus:ring-4 focus:ring-sky-600 dark:focus:ring-sky-400 min-h-[52px] disabled:opacity-50"
+            >
+              {submitting ? 'Submitting...' : 'Submit Order'}
+              {!submitting && <ArrowRight size={18} aria-hidden="true" />}
+            </button>
+          </MagneticWrapper>
+        </motion.form>
+      </div>
+    </section>
+  );
+}
 
 export function HomePage({ isDark, onNavigate }: HomePageProps) {
   return (
@@ -108,6 +265,15 @@ export function HomePage({ isDark, onNavigate }: HomePageProps) {
                 style={{ fontSize: 'clamp(1rem, 1.5vw, 1.25rem)' }}
               >
                 Where Great Design Meets Great Talent
+              </motion.p>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.25 }}
+                className="text-base sm:text-lg opacity-60 mb-8"
+                style={{ fontSize: 'clamp(0.9rem, 1.3vw, 1.125rem)' }}
+              >
+                We help UX/UI designers land jobs with resumes and portfolios that get noticed.
               </motion.p>
 
               <motion.div
@@ -255,6 +421,64 @@ export function HomePage({ isDark, onNavigate }: HomePageProps) {
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Resume & Portfolio Design card */}
+            <motion.article
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.05 }}
+              className="lg:col-span-2"
+            >
+              <TiltCard className={`group relative overflow-hidden rounded-3xl p-8 sm:p-10 lg:p-12 border transition-all duration-500 ${
+                isDark
+                  ? 'bg-gradient-to-br from-sky-950/40 via-orange-950/20 to-sky-950/40 border-sky-800/20 hover:border-sky-600/40 hover:shadow-[0_8px_40px_-8px_rgba(14,165,233,0.15)]'
+                  : 'bg-gradient-to-br from-sky-50/80 via-orange-50/40 to-sky-50/80 border-sky-100/80 hover:border-sky-300 hover:shadow-[0_8px_40px_-8px_rgba(14,165,233,0.12)]'
+              }`}>
+                <div className="absolute -top-20 -left-20 w-60 h-60 rounded-full bg-orange-500/8 dark:bg-orange-400/8 blur-3xl group-hover:scale-150 transition-transform duration-700" aria-hidden="true" />
+                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/8 to-transparent pointer-events-none" aria-hidden="true" />
+
+                <div className="relative grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                  <div>
+                    <div className="flex items-start justify-between mb-8">
+                      <div className={`w-16 h-16 rounded-2xl flex items-center justify-center ${isDark ? 'bg-sky-400/10 border border-sky-400/20' : 'bg-sky-600/10 border border-sky-600/15'}`}>
+                        <FileText size={30} className="text-sky-600 dark:text-sky-400" aria-hidden="true" />
+                      </div>
+                      <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide ${isDark ? 'bg-orange-400/15 text-orange-400 border border-orange-400/20' : 'bg-orange-500/10 text-orange-700 border border-orange-500/15'}`}>
+                        <Sparkles size={12} aria-hidden="true" />
+                        New
+                      </span>
+                    </div>
+                    <h3 className="text-2xl sm:text-3xl font-bold mb-4">Resume & Portfolio Design</h3>
+                    <p className="text-base sm:text-lg opacity-65 leading-relaxed mb-6">
+                      Figma-crafted resumes and portfolio decks designed specifically for UX/UI designers. ATS-friendly, visually compelling, delivered in 3–5 days.
+                    </p>
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {['ATS-Friendly', 'Figma Source File', 'Portfolio Decks', '3–5 Day Delivery'].map((tag) => (
+                        <span key={tag} className={`px-3 py-1 rounded-lg text-xs font-semibold ${isDark ? 'bg-sky-400/10 text-sky-400 border border-sky-400/20' : 'bg-sky-600/8 text-sky-800 border border-sky-600/15'}`}>
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-3">
+                    {[
+                      { label: 'Resume Design', price: '\u20B91,500 / $18', days: '3 day turnaround' },
+                      { label: 'Portfolio Deck', price: '\u20B93,000 / $36', days: '5 day turnaround' },
+                      { label: 'Bundle (Both)', price: '\u20B94,000 / $48', days: '5 day turnaround' },
+                    ].map((item) => (
+                      <div key={item.label} className={`flex items-center justify-between p-4 rounded-2xl border ${isDark ? 'bg-white/4 border-white/8' : 'bg-white/70 border-gray-200/50'}`}>
+                        <div>
+                          <p className="font-semibold text-sm">{item.label}</p>
+                          <p className="text-xs opacity-50">{item.days}</p>
+                        </div>
+                        <span className="font-bold text-sky-700 dark:text-sky-400 text-sm">{item.price}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </TiltCard>
+            </motion.article>
+
             {/* Design card */}
             <motion.article
               initial={{ opacity: 0, y: 30 }}
@@ -354,6 +578,127 @@ export function HomePage({ isDark, onNavigate }: HomePageProps) {
           </div>
         </div>
       </section>
+
+      {/* ── PRICING ─────────────────────────────────────────────────── */}
+      <section className="px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36" aria-labelledby="pricing-heading">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="mb-14 sm:mb-20"
+          >
+            <p className="text-sm font-semibold tracking-widest uppercase opacity-50 mb-3">Pricing</p>
+            <h2 id="pricing-heading" className="tracking-tight leading-tight max-w-2xl" style={{ fontSize: 'clamp(1.25rem, 2.5vw, 2rem)' }}>
+              Resume & Portfolio Packages
+            </h2>
+          </motion.div>
+
+          {/* Offer banner */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className={`mb-10 p-5 rounded-2xl border text-center ${
+              isDark
+                ? 'bg-orange-950/30 border-orange-800/30 text-orange-300'
+                : 'bg-orange-50 border-orange-200 text-orange-800'
+            }`}
+          >
+            <p className="font-bold text-lg">First 3 clients get 50% off</p>
+            <p className="text-sm opacity-70 mt-1">Email <a href="mailto:divyansh.sharma@thecollabrix.com" className="underline font-semibold hover:opacity-100 transition-opacity">divyansh.sharma@thecollabrix.com</a></p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                title: 'Resume Design',
+                price: '\u20B91,500',
+                usd: '$18',
+                turnaround: '3 day turnaround',
+                features: ['ATS-friendly layout', 'Figma source file', 'One revision round', 'Print-ready PDF'],
+                accent: 'sky',
+              },
+              {
+                title: 'Portfolio Deck',
+                price: '\u20B93,000',
+                usd: '$36',
+                turnaround: '5 day turnaround',
+                features: ['Up to 10 slides', 'Case study layout', 'Figma source file', 'Two revision rounds'],
+                accent: 'orange',
+                popular: true,
+              },
+              {
+                title: 'Resume + Portfolio Bundle',
+                price: '\u20B94,000',
+                usd: '$48',
+                turnaround: '5 day turnaround',
+                features: ['Everything in both plans', 'Cohesive design system', 'Priority delivery', 'Three revision rounds'],
+                accent: 'sky',
+              },
+            ].map((plan, i) => (
+              <motion.div
+                key={plan.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                whileHover={{ y: -6, scale: 1.02 }}
+                className={`relative p-8 rounded-3xl border transition-all duration-300 ${
+                  plan.popular
+                    ? isDark
+                      ? 'bg-orange-950/30 border-orange-600/40 shadow-[0_4px_30px_-4px_rgba(234,88,12,0.2)]'
+                      : 'bg-orange-50/60 border-orange-300 shadow-[0_4px_30px_-4px_rgba(234,88,12,0.12)]'
+                    : isDark
+                      ? 'bg-white/4 border-white/10 hover:bg-white/8'
+                      : 'bg-white/70 border-gray-200/50 hover:bg-white hover:shadow-lg'
+                }`}
+              >
+                {plan.popular && (
+                  <span className={`absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wide ${
+                    isDark ? 'bg-orange-600 text-white' : 'bg-orange-500 text-white'
+                  }`}>
+                    Most Popular
+                  </span>
+                )}
+                <h3 className="text-xl font-bold mb-4">{plan.title}</h3>
+                <div className="mb-1">
+                  <span className={`text-4xl font-bold ${plan.accent === 'sky' ? 'text-sky-700 dark:text-sky-400' : 'text-orange-600 dark:text-orange-400'}`}>{plan.price}</span>
+                  <span className="text-lg opacity-50 ml-2">/ {plan.usd}</span>
+                </div>
+                <p className="text-sm opacity-50 mb-6">{plan.turnaround}</p>
+                <ul className="space-y-3 mb-8">
+                  {plan.features.map((f) => (
+                    <li key={f} className="flex items-center gap-3 text-sm">
+                      <Check size={16} className={plan.accent === 'sky' ? 'text-sky-600 dark:text-sky-400' : 'text-orange-600 dark:text-orange-400'} aria-hidden="true" />
+                      <span className="opacity-70">{f}</span>
+                    </li>
+                  ))}
+                </ul>
+                <MagneticWrapper>
+                  <a
+                    href="#order-form"
+                    className={`block text-center w-full py-3 rounded-2xl font-semibold transition-all duration-300 focus:outline-none focus:ring-4 min-h-[48px] ${
+                      plan.popular
+                        ? 'bg-orange-600 text-white hover:bg-orange-700 focus:ring-orange-600/50'
+                        : isDark
+                          ? 'border border-white/15 hover:bg-white/8 focus:ring-sky-400/50'
+                          : 'border border-gray-300 hover:bg-gray-50 focus:ring-sky-600/50'
+                    }`}
+                  >
+                    Get Started
+                  </a>
+                </MagneticWrapper>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── ORDER FORM ────────────────────────────────────────────────── */}
+      <OrderForm isDark={isDark} />
 
       {/* ── STATS ─────────────────────────────────────────────────────── */}
       {/* <section
@@ -463,6 +808,7 @@ export function HomePage({ isDark, onNavigate }: HomePageProps) {
           <li>Design Systems</li>
           <li>Mobile App Design</li>
           <li>Web Design</li>
+          <li>Resume & Portfolio Design</li>
           <li>Talent Acquisition</li>
           <li>Full-Cycle Recruiting</li>
           <li>Executive Search</li>
