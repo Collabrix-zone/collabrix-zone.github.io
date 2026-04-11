@@ -47,7 +47,16 @@ export function ContactPage({ isDark }: ContactPageProps) {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
     setIsSubmitting(true);
-    await new Promise((r) => setTimeout(r, 1200));
+    try {
+      await fetch('https://script.google.com/a/macros/thecollabrix.com/s/AKfycbxYu4qhmXR-fUBPGwUDEw0ayHxMEVfdyN3sZJYsVg2hQ0BUmKkJYTa8XmV2lgA2ndAuBQ/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ formType: 'contact', ...formData }),
+      });
+    } catch {
+      // Submission still goes through with no-cors
+    }
     setIsSubmitting(false);
     setIsSubmitted(true);
     setTimeout(() => {

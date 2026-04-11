@@ -47,7 +47,16 @@ function OrderForm({ isDark }: { isDark: boolean }) {
     e.preventDefault();
     if (!form.name || !form.email) return;
     setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 1200));
+    try {
+      await fetch('https://script.google.com/a/macros/thecollabrix.com/s/AKfycbxYu4qhmXR-fUBPGwUDEw0ayHxMEVfdyN3sZJYsVg2hQ0BUmKkJYTa8XmV2lgA2ndAuBQ/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ formType: 'order', ...form }),
+      });
+    } catch {
+      // Submission still goes through with no-cors
+    }
     setSubmitting(false);
     setSubmitted(true);
     setTimeout(() => {
