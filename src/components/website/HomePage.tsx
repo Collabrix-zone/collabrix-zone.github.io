@@ -51,7 +51,7 @@ function OrderForm({ isDark }: { isDark: boolean }) {
       await fetch('https://script.google.com/a/macros/thecollabrix.com/s/AKfycbxYu4qhmXR-fUBPGwUDEw0ayHxMEVfdyN3sZJYsVg2hQ0BUmKkJYTa8XmV2lgA2ndAuBQ/exec', {
         method: 'POST',
         mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify({ formType: 'order', ...form }),
       });
     } catch {
