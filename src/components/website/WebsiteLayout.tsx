@@ -251,7 +251,7 @@ export function WebsiteLayout({
               <div>
                 <h2 className="text-lg font-bold mb-4">Quick Links</h2>
                 <ul className="space-y-3" role="list">
-                  {navLinks.slice(0, 4).map((link) => (
+                  {navLinks.slice(0, 5).map((link) => (
                     <li key={link.path}>
                       <button
                         onClick={() => onNavigate(link.path)}
