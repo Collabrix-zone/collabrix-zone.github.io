@@ -7,6 +7,7 @@ import { TalentPage } from './website/TalentPage';
 import { WorkPage } from './website/WorkPage';
 import { ContactPage } from './website/ContactPage';
 import { CaseStudyPage } from './website/CaseStudyPage';
+import { ProductsPage } from './website/ProductsPage';
 
 interface MainWebsiteProps {
   isDark: boolean;
@@ -14,7 +15,7 @@ interface MainWebsiteProps {
   onNavigate?: (page: 'privacy' | 'terms') => void;
 }
 
-const VALID_PAGES = ['home', 'about', 'design', 'talent', 'work', 'contact'];
+const VALID_PAGES = ['home', 'about', 'design', 'talent', 'products', 'work', 'contact'];
 
 export function MainWebsite({ isDark, toggleTheme, onNavigate }: MainWebsiteProps) {
   const [currentPage, setCurrentPage] = useState<string>(() => {
@@ -56,6 +57,8 @@ export function MainWebsite({ isDark, toggleTheme, onNavigate }: MainWebsiteProp
         return <DesignPage isDark={isDark} onNavigate={handlePageNavigate} />;
       case 'talent':
         return <TalentPage isDark={isDark} onNavigate={handlePageNavigate} />;
+      case 'products':
+        return <ProductsPage isDark={isDark} />;
       // case 'work':
       //   return <WorkPage isDark={isDark} onNavigate={handlePageNavigate} />;
       case 'contact':

@@ -8,7 +8,7 @@ import { MainWebsite } from './components/MainWebsite';
 type Page = 'home' | 'privacy' | 'terms' | '404';
 
 // All valid pages in the multi-page website
-const WEBSITE_PAGES = ['about', 'design', 'talent', 'work', 'contact'];
+const WEBSITE_PAGES = ['about', 'design', 'talent', 'products', 'work', 'contact'];
 
 function resolveAppPage(path: string): Page {
   const clean = path.replace(/^\//, '').split('?')[0].split('#')[0];
