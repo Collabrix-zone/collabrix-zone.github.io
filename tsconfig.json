@@ -4,6 +4,7 @@
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
+    "types": ["vite/client", "node"],
     "skipLibCheck": true,
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
@@ -15,7 +16,6 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true,
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
       "vaul@1.1.2": ["./node_modules/vaul"],
@@ -58,5 +58,5 @@
       "@radix-ui/react-accordion@1.2.3": ["./node_modules/@radix-ui/react-accordion"]
     }
   },
-  "include": ["src"]
+  "include": ["src", "scripts/**/*.ts", "vite.config.ts", "tests/**/*.ts", "playwright.config.ts"]
 }

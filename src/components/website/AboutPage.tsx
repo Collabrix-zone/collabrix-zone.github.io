@@ -61,14 +61,7 @@ export function AboutPage({ isDark, onNavigate }: AboutPageProps) {
                 className="tracking-tight leading-[0.92] mb-8"
                 style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)' }}
               >
-                We bridge the gap between{' '}
-                <span className="bg-gradient-to-br from-sky-600 to-sky-800 dark:from-sky-300 dark:to-sky-500 bg-clip-text text-transparent">
-                  Design
-                </span>{' '}
-                and{' '}
-                <span className="bg-gradient-to-br from-orange-500 to-orange-700 dark:from-orange-300 dark:to-orange-500 bg-clip-text text-transparent">
-                  Talent
-                </span>
+                Building products, experiences and teams.
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0 }}
@@ -77,7 +70,7 @@ export function AboutPage({ isDark, onNavigate }: AboutPageProps) {
                 className="text-lg sm:text-xl opacity-65 leading-relaxed max-w-xl"
               >
                 <WordReveal
-                  text="We're a premium studio that brings together exceptional UX/UI design and world-class talent acquisition under one roof—so businesses never have to choose between the two."
+                  text="Collabrix Zone Private Limited develops proprietary digital products and also provides product, UX and talent expertise."
                   delay={0.3}
                   stagger={0.04}
                 />
@@ -163,7 +156,7 @@ export function AboutPage({ isDark, onNavigate }: AboutPageProps) {
                   We saw companies hiring design agencies that didn't understand their culture, and recruitment firms that couldn't appreciate their creative vision. This disconnect inspired us to build something different — a studio that brings both worlds together seamlessly.
                 </p>
                 <p>
-                  Today, we serve clients who refuse to compromise on quality. Whether we're crafting their digital experiences or building their teams, we approach every project with the same unwavering commitment to excellence.
+                  Today, we develop our own software products alongside our services business. We bring product thinking to both: understanding operational problems, creating digital experiences and helping businesses build their teams.
                 </p>
               </motion.div>
             </div>
@@ -276,7 +269,7 @@ export function AboutPage({ isDark, onNavigate }: AboutPageProps) {
               <p className="text-sm font-semibold tracking-widest uppercase text-sky-600 dark:text-sky-400 opacity-80 mb-4">Mission</p>
               <h2 id="mission-heading" className="text-2xl sm:text-3xl font-bold mb-5 tracking-tight">Our Mission</h2>
               <p className="text-base sm:text-lg opacity-70 leading-relaxed relative">
-                To empower businesses with exceptional design and the right people. 
+                To build useful software products and empower businesses with thoughtful design and the right people.
                 We believe great products and great teams go hand in hand — and we 
                 deliver both with uncompromising quality and genuine care.
               </p>

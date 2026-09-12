@@ -1,6 +1,6 @@
 # Collabrix Zone
 
-A polished "coming soon" landing page for Collabrix Zone — a creative collaboration platform. The page features animated sections, a hero with motion effects, service highlights, and a newsletter/contact area, all built with a WCAG AAA-compliant design system.
+The Collabrix company website presents proprietary software products alongside product, UX/design and talent services. It uses React, TypeScript, Vite and Tailwind, with a shared responsive layout and light/dark themes.
 
 ## Tech Stack
 
@@ -10,7 +10,7 @@ A polished "coming soon" landing page for Collabrix Zone — a creative collabor
 - **Tailwind CSS v4** — Utility-first CSS with `@tailwindcss/vite` plugin
 - **motion/react** — Animation library (formerly Framer Motion)
 - **shadcn/ui** — Accessible, composable UI components built on Radix UI
-- **React Router** — Client-side routing
+- **Custom history router** — Client-side routing with generated static route entry files
 - **Outfit** (Google Fonts) — Primary typeface
 
 ## Running Locally
@@ -27,7 +27,7 @@ A polished "coming soon" landing page for Collabrix Zone — a creative collabor
    npm run dev
    ```
 
-   The app will be available at `http://localhost:5173` (or the port Vite chooses).
+   The app will be available at `http://localhost:3000` (or the port Vite chooses).
 
 ## Building for Production
 
@@ -59,4 +59,15 @@ src/
   index.css      # Entry stylesheet — imports Tailwind + globals
   App.tsx        # Root component with routing
   main.tsx       # React entry point
+```
+
+## Testing and product maintenance
+
+See [Products implementation and testing](docs/products-testing.md) for product renaming, route/SEO generation and browser-test coverage.
+
+```bash
+npm run typecheck
+npm run build
+npx playwright install chromium
+npm test
 ```

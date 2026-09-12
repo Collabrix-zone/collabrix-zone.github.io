@@ -37,9 +37,6 @@ jobs:
       - name: Copy CNAME to build
         run: cp CNAME build/ 2>/dev/null || true
 
-      - name: Copy index.html to 404.html for SPA routing
-        run: cp build/index.html build/404.html
-
       - uses: actions/configure-pages@v4
 
       - uses: actions/upload-pages-artifact@v3

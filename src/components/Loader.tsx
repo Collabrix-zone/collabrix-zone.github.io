@@ -94,7 +94,7 @@ export function Loader() {
                 className="text-white/30 tracking-[0.4em] uppercase text-xs select-none"
                 style={{ fontFamily: "'Outfit', sans-serif" }}
               >
-                Design &amp; Talent Studio
+                Digital Products &amp; Services
               </motion.span>
             </motion.div>
 
@@ -140,7 +140,7 @@ export function Loader() {
               className="text-white/15 tracking-[0.3em] uppercase"
               style={{ fontFamily: "'Outfit', sans-serif", fontSize: '0.65rem' }}
             >
-              Premium Studio
+              Collabrix Zone
             </span>
           </motion.div>
 
