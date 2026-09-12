@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react';
+import { MotionConfig } from 'motion/react';
+import { products } from './data/products';
+import { PageMetadata } from './components/PageMetadata';
 import { PrivacyPage } from './components/PrivacyPage';
 import { TermsPage } from './components/TermsPage';
 import { NotFoundPage } from './components/NotFoundPage';
@@ -11,11 +14,12 @@ type Page = 'home' | 'privacy' | 'terms' | '404';
 const WEBSITE_PAGES = ['about', 'design', 'talent', 'products', 'work', 'contact'];
 
 function resolveAppPage(path: string): Page {
-  const clean = path.replace(/^\//, '').split('?')[0].split('#')[0];
+  const clean = path.replace(/^\//, '').replace(/\/$/, '').split('?')[0].split('#')[0];
+  if (`/${clean}` === products.clinicPlatform.route) return 'home';
   if (clean === '' || clean === 'home' || WEBSITE_PAGES.includes(clean)) return 'home';
   if (clean.startsWith('work/')) return 'home';
-  if (clean === 'privacy' || clean.includes('privacy')) return 'privacy';
-  if (clean === 'terms' || clean.includes('terms')) return 'terms';
+  if (clean === 'privacy') return 'privacy';
+  if (clean === 'terms') return 'terms';
   return '404';
 }
 
@@ -25,7 +29,7 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const initializeApp = async () => {
+    const initializeApp = () => {
       const savedTheme = localStorage.getItem('theme');
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
@@ -37,7 +41,6 @@ export default function App() {
       const path = window.location.pathname;
       setCurrentPage(resolveAppPage(path));
 
-      await new Promise(resolve => setTimeout(resolve, 2000));
       setIsLoading(false);
     };
 
@@ -87,21 +90,23 @@ export default function App() {
 
   // Render different pages based on current page state
   if (currentPage === 'privacy') {
-    return <PrivacyPage isDark={isDark} onBack={navigateHome} toggleTheme={toggleTheme} onNavigate={navigateTo} />;
+    return <><PageMetadata path="/privacy" /><PrivacyPage isDark={isDark} onBack={navigateHome} toggleTheme={toggleTheme} onNavigate={navigateTo} /></>;
   }
 
   if (currentPage === 'terms') {
-    return <TermsPage isDark={isDark} onBack={navigateHome} toggleTheme={toggleTheme} onNavigate={navigateTo} />;
+    return <><PageMetadata path="/terms" /><TermsPage isDark={isDark} onBack={navigateHome} toggleTheme={toggleTheme} onNavigate={navigateTo} /></>;
   }
 
   if (currentPage === '404') {
-    return <NotFoundPage isDark={isDark} toggleTheme={toggleTheme} onNavigateHome={navigateHome} />;
+    return <><PageMetadata path="/404" /><NotFoundPage isDark={isDark} toggleTheme={toggleTheme} onNavigateHome={navigateHome} /></>;
   }
 
   // Home page
   return (
+    <MotionConfig reducedMotion="user">
     <div className="min-h-screen bg-background text-foreground transition-colors duration-700" lang="en">
       <MainWebsite isDark={isDark} toggleTheme={toggleTheme} onNavigate={navigateTo} />
     </div>
+    </MotionConfig>
   );
 }

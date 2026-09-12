@@ -238,7 +238,7 @@ export function WebsiteLayout({
               <div className="lg:col-span-2">
                 <CollabrixLogo isDark={isDark} className="h-10 w-auto mb-4" />
                 <p className="text-base opacity-70 mb-4 max-w-md leading-relaxed">
-                  Premium Design & Talent Studio. Crafting exceptional digital experiences and connecting businesses with world-class talent.
+                  Collabrix Zone develops digital products and provides product, design and talent expertise.
                 </p>
                 <div className="flex items-center gap-2 text-sm opacity-60">
                   <span>Made with</span>

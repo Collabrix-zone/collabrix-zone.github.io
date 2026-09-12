@@ -1,3 +1,6 @@
+import { products } from '../data/products';
+import { PageMetadata } from './PageMetadata';
+import { ClinicPlatformPage } from './website/ClinicPlatformPage';
 import { useState, useEffect } from 'react';
 import { WebsiteLayout } from './website/WebsiteLayout';
 import { HomePage } from './website/HomePage';
@@ -15,11 +18,11 @@ interface MainWebsiteProps {
   onNavigate?: (page: 'privacy' | 'terms') => void;
 }
 
-const VALID_PAGES = ['home', 'about', 'design', 'talent', 'products', 'work', 'contact'];
+const VALID_PAGES = ['home', 'about', 'design', 'talent', 'products', 'work', 'contact', products.clinicPlatform.route.slice(1)];
 
 export function MainWebsite({ isDark, toggleTheme, onNavigate }: MainWebsiteProps) {
   const [currentPage, setCurrentPage] = useState<string>(() => {
-    const path = window.location.pathname.slice(1);
+    const path = window.location.pathname.replace(/\/$/, '').slice(1);
     if (VALID_PAGES.includes(path)) return path;
     if (path.startsWith('work/')) return path;
     return 'home';
@@ -27,7 +30,7 @@ export function MainWebsite({ isDark, toggleTheme, onNavigate }: MainWebsiteProp
 
   const handlePageNavigate = (page: string) => {
     setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
     const url = page === 'home' ? '/' : `/${page}`;
     window.history.pushState({}, '', url);
   };
@@ -35,7 +38,7 @@ export function MainWebsite({ isDark, toggleTheme, onNavigate }: MainWebsiteProp
   // Handle browser back/forward buttons
   useEffect(() => {
     const handlePopState = () => {
-      const path = window.location.pathname.slice(1) || 'home';
+      const path = window.location.pathname.replace(/\/$/, '').slice(1) || 'home';
       setCurrentPage(path);
     };
 
@@ -44,6 +47,7 @@ export function MainWebsite({ isDark, toggleTheme, onNavigate }: MainWebsiteProp
   }, []);
 
   const renderPage = () => {
+    if (`/${currentPage}` === products.clinicPlatform.route) return <ClinicPlatformPage isDark={isDark} onNavigate={handlePageNavigate} />;
     if (currentPage.startsWith('work/')) {
       const slug = currentPage.slice(5);
       return <CaseStudyPage slug={slug} isDark={isDark} onNavigate={handlePageNavigate} />;
@@ -58,9 +62,9 @@ export function MainWebsite({ isDark, toggleTheme, onNavigate }: MainWebsiteProp
       case 'talent':
         return <TalentPage isDark={isDark} onNavigate={handlePageNavigate} />;
       case 'products':
-        return <ProductsPage isDark={isDark} />;
-      // case 'work':
-      //   return <WorkPage isDark={isDark} onNavigate={handlePageNavigate} />;
+        return <ProductsPage isDark={isDark} onNavigate={handlePageNavigate} />;
+      case 'work':
+        return <WorkPage isDark={isDark} onNavigate={handlePageNavigate} />;
       case 'contact':
         return <ContactPage isDark={isDark} />;
       default:
@@ -76,6 +80,7 @@ export function MainWebsite({ isDark, toggleTheme, onNavigate }: MainWebsiteProp
       onNavigate={handlePageNavigate}
       onLegalNavigate={onNavigate}
     >
+      <PageMetadata path={currentPage === 'home' ? '/' : `/${currentPage}`} />
       {renderPage()}
     </WebsiteLayout>
   );

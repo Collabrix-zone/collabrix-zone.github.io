@@ -1,3 +1,5 @@
+import { ProductCollection } from './ProductCollection';
+import { SiteLink, productLinkClass } from './SiteLink';
 import { motion } from 'motion/react';
 import { ArrowRight, ArrowUpRight, Sparkles, Palette, Users, Award, TrendingUp, Zap, Globe, FileText, Check, Upload } from 'lucide-react';
 import { AnimatedCounter } from './AnimatedCounter';
@@ -244,7 +246,7 @@ export function HomePage({ isDark, onNavigate }: HomePageProps) {
               >
                 <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-sky-600/30 dark:border-sky-400/30 bg-sky-600/5 dark:bg-sky-400/5 text-sky-800 dark:text-sky-300">
                   <Sparkles size={14} aria-hidden="true" />
-                  <span className="text-sm font-semibold tracking-wide uppercase">Premium Design & Talent Studio</span>
+                  <span className="text-sm font-semibold tracking-wide uppercase">Digital Products & Services</span>
                 </span>
               </motion.div>
 
@@ -256,15 +258,8 @@ export function HomePage({ isDark, onNavigate }: HomePageProps) {
                 className="tracking-tight leading-[0.92] mb-4"
                 style={{ fontSize: 'clamp(1.75rem, 3vw, 2.75rem)' }}
               >
-                Premium{' '}
-                <span className="bg-gradient-to-br from-sky-600 to-sky-800 dark:from-sky-300 dark:to-sky-500 bg-clip-text text-transparent">
-                  UX/UI Design Studio
-                </span>
-                <br />
-                &{' '}
-                <span className="bg-gradient-to-br from-orange-500 to-orange-700 dark:from-orange-300 dark:to-orange-500 bg-clip-text text-transparent">
-                  Talent Acquisition Firm
-                </span>
+                Building digital products and{' '}
+                <span className="bg-gradient-to-br from-sky-600 to-sky-800 dark:from-sky-300 dark:to-sky-500 bg-clip-text text-transparent">experiences.</span>
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0 }}
@@ -273,7 +268,7 @@ export function HomePage({ isDark, onNavigate }: HomePageProps) {
                 className="text-lg sm:text-xl opacity-50 mb-8 italic"
                 style={{ fontSize: 'clamp(1rem, 1.5vw, 1.25rem)' }}
               >
-                Where Great Design Meets Great Talent
+                Our products. Your next digital experience.
               </motion.p>
               <motion.p
                 initial={{ opacity: 0 }}
@@ -282,7 +277,7 @@ export function HomePage({ isDark, onNavigate }: HomePageProps) {
                 className="text-base sm:text-lg opacity-60 mb-8"
                 style={{ fontSize: 'clamp(0.9rem, 1.3vw, 1.125rem)' }}
               >
-                We help UX/UI designers land jobs with resumes and portfolios that get noticed.
+                Software products, product / UX / design, and talent / recruitment.
               </motion.p>
 
               <motion.div
@@ -293,7 +288,7 @@ export function HomePage({ isDark, onNavigate }: HomePageProps) {
               >
                 <span className="text-sm font-semibold uppercase tracking-widest opacity-45">We specialize in</span>
                 <Typewriter
-                  words={['UX/UI Excellence', 'Talent Acquisition', 'Brand Strategy', 'Product Design']}
+                  words={['Software Products', 'UX/UI Excellence', 'Talent Acquisition', 'Product Design']}
                   className="text-sm font-bold text-sky-600 dark:text-sky-400"
                 />
               </motion.div>
@@ -305,7 +300,7 @@ export function HomePage({ isDark, onNavigate }: HomePageProps) {
                 className="text-lg sm:text-xl opacity-65 max-w-xl leading-relaxed mb-10"
               >
                 <WordReveal
-                  text="Collabrix is a premium studio delivering world-class UX/UI design and strategic talent acquisition—two superpowers, one seamless partner."
+                  text="Collabrix Zone develops proprietary software products while helping businesses create better digital experiences through product, UX and talent expertise."
                   delay={0.35}
                   stagger={0.04}
                 />
@@ -319,14 +314,15 @@ export function HomePage({ isDark, onNavigate }: HomePageProps) {
               >
                 <MagneticWrapper>
                   <button
-                    onClick={() => onNavigate('contact')}
+                    onClick={() => onNavigate('products')}
                     className="group inline-flex items-center gap-3 px-7 py-4 bg-sky-800 dark:bg-sky-600 text-white rounded-2xl hover:bg-orange-600 dark:hover:bg-orange-600 transition-all duration-300 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-sky-600 dark:focus:ring-sky-400 min-h-[52px]"
-                    aria-label="Get started with Collabrix"
+                    aria-label="Explore Collabrix products"
                   >
-                    <span className="font-semibold">Get Started</span>
+                    <span className="font-semibold">Explore Products</span>
                     <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                   </button>
                 </MagneticWrapper>
+                <SiteLink href="/design" onNavigate={onNavigate} className={productLinkClass}>Explore Design Services</SiteLink>
                 {/* <MagneticWrapper>
                   <button
                     onClick={() => onNavigate('work')}
@@ -380,14 +376,14 @@ export function HomePage({ isDark, onNavigate }: HomePageProps) {
                   transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
                   className={`absolute top-1/3 -left-2 px-3 py-2 rounded-xl shadow-lg text-xs font-semibold ${isDark ? 'bg-sky-900/60 backdrop-blur-xl border border-sky-400/20 text-sky-300' : 'bg-sky-50 border border-sky-200 text-sky-700'}`}
                 >
-                  98% Satisfied
+                  Software Products
                 </motion.div>
                 <motion.div
                   animate={{ y: [0, 8, 0] }}
                   transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
                   className={`absolute bottom-1/4 right-0 px-3 py-2 rounded-xl shadow-lg text-xs font-semibold ${isDark ? 'bg-orange-900/60 backdrop-blur-xl border border-orange-400/20 text-orange-300' : 'bg-orange-50 border border-orange-200 text-orange-700'}`}
                 >
-                  500+ Placed
+                  Built by Collabrix
                 </motion.div>
               </div>
             </motion.div>
@@ -413,6 +409,15 @@ export function HomePage({ isDark, onNavigate }: HomePageProps) {
         </div>
       </section>
 
+      <section className="px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20" aria-labelledby="home-products-heading">
+        <div className="max-w-7xl mx-auto">
+          <p className="text-sm font-semibold uppercase tracking-widest opacity-75 mb-3">Products</p>
+          <h2 id="home-products-heading" className="text-2xl sm:text-3xl font-semibold tracking-tight mb-4">Software built by Collabrix.</h2>
+          <p className="opacity-80 max-w-2xl leading-relaxed mb-8">Our own software products, built alongside the expertise we bring to client projects.</p>
+          <ProductCollection isDark={isDark} onNavigate={onNavigate} compact />
+        </div>
+      </section>
+
       {/* ── SERVICES ──────────────────────────────────────────────────── */}
       <section className="px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36" aria-labelledby="services-heading">
         <div className="max-w-7xl mx-auto">
@@ -423,7 +428,7 @@ export function HomePage({ isDark, onNavigate }: HomePageProps) {
             transition={{ duration: 0.7 }}
             className="mb-14 sm:mb-20"
           >
-            <p className="text-sm font-semibold tracking-widest uppercase opacity-50 mb-3">What we do</p>
+            <p className="text-sm font-semibold tracking-widest uppercase opacity-50 mb-3">Services</p>
             <h2 id="services-heading" className="tracking-tight leading-tight max-w-2xl" style={{ fontSize: 'clamp(1.25rem, 2.5vw, 2rem)' }}>
               UX/UI Design & Talent Acquisition Services
             </h2>
@@ -882,7 +887,7 @@ export function HomePage({ isDark, onNavigate }: HomePageProps) {
             {[
               {
                 q: 'What does The Collabrix do?',
-                a: 'The Collabrix is a premium studio offering two services: world-class UX/UI design (including product design, branding, and mobile apps) and full-service talent acquisition across all industries (including executive search, full-cycle recruiting, HR consulting, and team building).',
+                a: 'Collabrix Zone Private Limited develops proprietary software products and provides product, UX/UI design and talent acquisition services, including branding, recruitment and team building.',
               },
               {
                 q: 'What industries does The Collabrix recruit for?',
@@ -924,7 +929,7 @@ export function HomePage({ isDark, onNavigate }: HomePageProps) {
                   name: 'What does The Collabrix do?',
                   acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'The Collabrix is a premium studio offering two services: world-class UX/UI design (including product design, branding, and mobile apps) and full-service talent acquisition across all industries (including executive search, full-cycle recruiting, HR consulting, and team building).',
+                    text: 'Collabrix Zone Private Limited develops proprietary software products and provides product, UX/UI design and talent acquisition services, including branding, recruitment and team building.',
                   },
                 },
                 {

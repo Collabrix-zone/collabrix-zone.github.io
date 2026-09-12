@@ -48,16 +48,21 @@
     "vaul": "^1.1.2"
   },
   "devDependencies": {
+    "@playwright/test": "^1.63.0",
     "@tailwindcss/vite": "^4.2.1",
     "@types/node": "^20.10.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react-swc": "^3.10.2",
     "tailwindcss": "^4.2.1",
+    "typescript": "^7.0.2",
     "vite": "6.3.5"
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "typecheck": "tsc --noEmit",
+    "test": "playwright test",
+    "preview": "vite preview"
   }
 }

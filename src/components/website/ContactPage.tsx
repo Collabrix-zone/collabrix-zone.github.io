@@ -22,7 +22,7 @@ const serviceOptions: { value: ServiceOption; label: string; description: string
   { value: 'design', label: 'Design Services', description: 'UX/UI, product design' },
   { value: 'talent', label: 'Talent Services', description: 'Recruitment, executive search, HR' },
   { value: 'both', label: 'Both Services', description: 'Full design & talent partnership' },
-  { value: 'other', label: 'Something Else', description: 'Let\'s talk about your needs' },
+  { value: 'other', label: 'Products / Other', description: 'Private beta interest or another enquiry' },
 ];
 
 const faqs = [

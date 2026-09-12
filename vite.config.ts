@@ -3,9 +3,10 @@
   import react from '@vitejs/plugin-react-swc';
   import tailwindcss from '@tailwindcss/vite';
   import path from 'path';
+  import { staticPages } from './scripts/static-pages';
 
   export default defineConfig({
-    plugins: [tailwindcss(), react()],
+    plugins: [tailwindcss(), react(), staticPages()],
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
       alias: {
